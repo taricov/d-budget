@@ -20,9 +20,10 @@
     </BaseDialogModalComponent>
 
     <sidebar />
-<Welocome/>
     <v-main>
-      <router-view class="animated" />
+<!-- <Welocome v-if="!selectedBudgetID"/>
+{{selectedBudgetID}} -->
+      <router-view  v-if="selectedBudgetID" class="animated" />
     </v-main>
     <v-snackbar v-model="snackbar" :color="snackBarColor">
       {{ snackbarMessage }}
@@ -41,6 +42,7 @@ import Sidebar from './components/Sidebar.vue'
 import BaseDialogModalComponent from './components/Modals/BaseDialogModalComponent.vue'
 import ConfirmDialog from './components/Modals/ConfirmDialog.vue'
 import Welocome from './components/Welcome/Welocome.vue'
+import { mapState, mapGetters} from 'vuex'
 
 export default {
   name: 'App',
@@ -58,6 +60,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(["selectedBudgetID"]),
     isModalVisibleCreateBudget() {
       return !this.$store.getters.budgetExists
     },
@@ -79,6 +82,8 @@ export default {
   mounted() {
     this.$store.dispatch('AUTH_CHECK')
     this.$root.$confirm = this.$refs.confirm.open
+    // this.$store.state.selectedBudgetID = null
+
   },
   methods: {
     async createBudget() {

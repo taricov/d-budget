@@ -13,7 +13,6 @@
 <script>
 import { firestore, authUi, authUiConfig, firebase } from '../../firebaseConfig'
 import 'firebaseui/dist/firebaseui.css'
-import { mapState } from 'vuex'
 export default {
   name: 'Welcome',
   data() {
@@ -26,7 +25,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(["selectedBudgetName"]),
     env() {
       return process.env.NODE_ENV
     }

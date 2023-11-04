@@ -75,7 +75,7 @@
         <v-list-item :to="{ path: '/manage' }">
           <v-list-item-avatar>
             <!-- <v-icon left color="primary"> mdi-swap-horizontal </v-icon> -->
-            <v-icon left medium color="primary"> mdi-cog-outline </v-icon>
+            <v-icon left medium color="primary"> mdi-tools </v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>Manage Budgets</v-list-item-title>
@@ -119,7 +119,7 @@
         <v-list-item-content>
           <v-list-item-title class="subtitle-1"> {{ budget }} </v-list-item-title>
         </v-list-item-content>
-        <v-icon v-if="budget === selectedBudgetName" color="accent">
+        <v-icon v-if="budget === selectedBudgetName" color="secondary">
                   mdi-check-bold
                 </v-icon>
       </v-list-item>
@@ -356,6 +356,10 @@ export default {
       this.selectedBudget = newBudget //Assign value from vuex to local var when loads/updates
     }
 
+  },
+  mounted() {
+    // console.log(this.budgetRoots, this.selectedBudgetName)
+    // this.selectedBudgetName = this.budgetRoots.filter(bud=> bud.short_id === this.selectedBudgetID);
   },
   methods: {
     changeBudget(clickedBudgetName){
